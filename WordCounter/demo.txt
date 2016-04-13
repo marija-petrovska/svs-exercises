@@ -1,0 +1,4 @@
+hello   hello ok
+
+ok  write   hello
+now WRite
