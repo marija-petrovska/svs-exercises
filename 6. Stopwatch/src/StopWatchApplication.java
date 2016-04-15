@@ -7,14 +7,14 @@ public class StopWatchApplication {
 		Scanner in = new Scanner(System.in);
 		StopWatch watch = new StopWatch();
 
-		String line;
+		String command;
 		System.out.println("Enter 'start' for starting a stopwatch...");
 		
-		while (!(line = in.nextLine()).equals("exit")) {
+		while (!(command = in.nextLine()).equals("exit")) {
 			
-			System.out.println(line);
+			System.out.println(command);
 
-			switch (line) {
+			switch (command) {
 				case "start":
 					watch.start();
 					break;

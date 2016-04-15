@@ -8,10 +8,7 @@ public class StopWatch implements Runnable {
 		count = 1;
 		// pause -> start (restart)
 		if (paused) {
-			synchronized (this) {
-				paused = false;
-				notifyAll();
-			}
+			resume();
 		}
 		// stop -> start
 		else {
@@ -19,12 +16,10 @@ public class StopWatch implements Runnable {
 			thread.start();
 		}
 	}
-	
 	// start -> pause
 	public void pause() {
 		paused = true;
 	}
-
 	// pause -> resume
 	public void resume() {
 		synchronized (this) {
@@ -32,26 +27,16 @@ public class StopWatch implements Runnable {
 			notifyAll();
 		}
 	}
-
 	public void stop() {
 		// pause -> stop
 		if (paused) {
-			synchronized (this) {
-				paused = false;
-				notifyAll();
-			}
-			thread.interrupt();
+			resume();
 		}
 		// start -> stop
-		else {
-			thread.interrupt();
-		}
-
+		thread.interrupt();
 	}
-
 	@Override
 	public void run() {
-
 		while (true) {
 			// count
 			try {
@@ -61,13 +46,11 @@ public class StopWatch implements Runnable {
 				return;
 			}
 			System.out.println(count++);
-
 			// interrupt if it is stopped
 			if (Thread.interrupted()) {
 				Logger.log("I've been stoped.");
 				return;
 			}
-
 			// wait if pause
 			while (paused) {
 				synchronized (this) {
@@ -78,11 +61,7 @@ public class StopWatch implements Runnable {
 					}
 				}
 			}
-
 			// continue with count
-
 		}
-
 	}
-
 }
