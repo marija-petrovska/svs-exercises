@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Members page</title>
+<style type="text/css">
+table {
+	padding: 10px;
+	border: 1px solid gray;
+	width: 400px;
+	margin: 20px;
+}
+.formtd {
+	text-align: center;
+}
+a.home {
+	margin: 20px;
+}
+</style>
+</head>
+
+<body>
+	<table>
+		<tr><th>Email</th><th>Name</th></tr>
+		<tr th:each="member: ${members}">
+			<td class="formtd" th:text="${member.email}">Email</td>
+			<td class="formtd" th:text="${member.name}">Name</td>
+			<td class="formtd"><a th:href="@{/members/{id}(id=${member.id})}">Edit</a></td>
+			<td class="formtd">			
+				<form th:action="@{/members/unregister}" method="post">
+					<input type="hidden" th:value="${member.id}" th:name="id"/>
+					<input type="submit" value="Delete"/>
+				</form>
+			</td>
+		</tr>
+	</table>
+	
+	<form action="#" th:action="@{/members}" th:object="${member}" method="post">
+		<table>
+			<tr><td>Email:</td><td><input type="text" th:field="*{email}" /></td>
+			</tr><tr><td>Name:</td><td><input type="text" th:field="*{name}"/></td>
+			</tr><tr><td><input type="submit" value="Register or update member"/></td>
+			</tr>
+		</table>
+		<input type="hidden" th:field="*{id}"/>
+	</form>
+	
+	<a class="home" th:href="@{/}">&#8678; Home</a>
+
+</body>
+</html>

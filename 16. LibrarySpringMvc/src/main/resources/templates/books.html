@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Books page</title>
+<style type="text/css">
+table {
+	padding: 10px;
+	border: 1px solid gray;
+	width: 400px;
+	margin: 20px;
+}
+.formtd {
+	text-align: center;
+}
+a.home{
+	 margin: 20px;
+}
+</style>
+</head>
+
+<body>
+	<table>
+	<tr><th>Isbn</th><th>Title</th></tr>
+	<tr th:each="book: ${books}">
+		<td class="formtd" th:text="${book.isbn}">Isbn</td>
+		<td class="formtd" th:text="${book.title}">Title</td>
+		<td class="formtd"><a th:href="@{/books/{id}(id=${book.id})}">Edit</a></td>
+		<td class="formtd">			
+			<form th:action="@{/books/unregister}" method="post">
+				<input type="hidden" th:value="${book.id}" th:name="id"/>
+				<input type="submit" value="Delete"/>
+			</form>
+		</td>
+	</tr>
+	</table>
+	
+	<form action="#" th:action="@{/books}" th:object="${book}" method="post">
+		<table>
+			<tr><td>Isbn:</td><td><input type="text" th:field="*{isbn}" /></td>
+			</tr><tr><td>Title:</td><td><input type="text" th:field="*{title}"/></td>
+			</tr><tr><td><input type="submit" value="Register or update book"/></td>
+			</tr>
+		</table>
+		<input type="hidden" th:field="*{id}"/>
+	</form>
+	
+	<a class="home" th:href="@{/}">&#8678; Home</a>
+
+</body>
+</html>
