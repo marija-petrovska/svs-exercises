@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<link th:href="@{css/main.css}" href="css/main.css"  rel="stylesheet" type="text/css"  />
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h3>Compose new Tweet</h3>
+	<form action="#" th:action="@{/tweets}" th:object="${tweet}" method="post">
+		<table>
+			<tr><td>Username:</td><td><input type="text" th:field="*{username}" /></td>
+			</tr><tr><td>Message:</td><td><input type="text" th:field="*{message}"/></td>
+			</tr><tr><td><input type="submit" value="Tweet"/></td>
+			</tr>
+		</table>
+		<input type="hidden" th:field="*{id}"/>
+	</form>
+	
+	<h3>Recent Tweets</h3>
+	<table>
+	<tr><th>Username</th><th>Message</th></tr>
+	<tr th:each="tweet: ${tweets}">
+		<td class="formtd" th:text="${tweet.username}">Username</td> 
+		<td class="formtd" th:text="${tweet.message}">Message</td>
+		<td class="formtd">			
+			<form th:action="@{/tweets/unregister}" method="post">
+				<input type="hidden" th:value="${tweet.id}" th:name="id"/>
+				<input type="submit" value="Delete Tweet"/>
+			</form>
+		</td>
+	</tr>
+	</table>
+
+</body>
+</html>

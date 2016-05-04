@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+
+table {
+	padding: 10px;
+	border: 1px solid gray;
+	width: 400px;
+	margin: 20px;
+}
+
+.formtd {
+	text-align: center;
+}
+
+h3 {
+	margin-left: 20px;
+}
