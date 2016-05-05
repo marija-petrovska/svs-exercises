@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.project.library</groupId>
-	<artifactId>books</artifactId>
+	<artifactId>library-mvc</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<parent>
@@ -16,7 +16,6 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.3</version>
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
@@ -41,7 +40,6 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.6</version>
 		</dependency>
 
 		<dependency>

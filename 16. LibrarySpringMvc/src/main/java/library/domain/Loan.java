@@ -78,9 +78,7 @@ public class Loan {
 	
 	@Override
 	public String toString() {
-		return "Loan [id=" + id + ", member=" + member + ", publication="
-				+ publication + ", startDate=" + startDate + ", endDate="
-				+ endDate + "]";
+		return "Loan [id=" + id + ", publication=" + publication + "]";
 	}
 
 }

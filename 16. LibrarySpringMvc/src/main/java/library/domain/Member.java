@@ -3,6 +3,7 @@ package library.domain;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -16,7 +17,7 @@ public class Member {
 	private String email;
 	private String name;
 
-	@OneToMany(mappedBy = "member")
+	@OneToMany(mappedBy = "member", fetch=FetchType.EAGER)
 	private Set<Loan> loans;
 
 	public Member(int id, String email, String name) {

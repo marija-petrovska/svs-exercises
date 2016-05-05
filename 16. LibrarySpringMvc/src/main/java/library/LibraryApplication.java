@@ -68,6 +68,7 @@ public class LibraryApplication implements CommandLineRunner,ApplicationContextA
 				break;
 			}
 		}
-		System.out.println("Thanks for visiting.");
+		System.out.println("Thank you for visiting.");
+		System.exit(0);
 	}
 }

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Insert title here</title>
+<style type="text/css">
+table {
+	padding: 10px;
+	border: 1px solid gray;
+	width: 550px;
+	margin: 20px;
+}
+.loans td {
+	padding-left: 10px;
+}
+</style>
+</head>
+
+<body>
+	
+	<table>
+	<tr><td><b>Member Email</b></td></tr>
+	<tr th:each="member: ${members}">
+		<td th:text="${member.email}">Email</td>
+		<td><a th:href="@{/loans/{id}(id=${member.id})}">New loan</a></td>
+			<tr class="loans" th:each="loan: ${member.loans}">
+				<td th:text="${loan.publication}"></td>
+				<td>			
+					<form th:action="@{/loans/unregister}" method="post">
+						<input type="hidden" th:value="${member.id}" th:name="mid"/>
+						<input type="hidden" th:value="${loan.publication.id}" th:name="pid"/>
+						<input type="submit" value="Return"/>
+					</form>
+				</td>
+			</tr>
+	</tr>
+	</table>
+	
+	<form action="#" th:action="@{/loans}" th:object="${member}" method="post">
+		<table>
+			<tr><td>Member email</td><td><input type="text" th:field="*{email}"/></td>
+			</tr>
+			<tr><td>Choose publication</td>
+				<td><select name="publication">
+					<option selected="selected"></option>
+					<option th:each="publication: ${publications}" 
+					th:label="${publication.title}" th:value="${publication.id}"></option>
+				</select></td>
+			</tr>
+			<tr><td><input type="submit" value="Lend Publication"/></td></tr>
+		</table>
+		<input type="hidden" th:field="*{id}"/>
+	</form>
+	
+<a th:href="@{/}" style="margin:20px">&#8678; Home</a>
+
+</body>
+</html>

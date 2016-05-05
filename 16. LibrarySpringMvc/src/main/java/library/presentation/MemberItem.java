@@ -63,9 +63,9 @@ public class MemberItem extends ManuItemBasic {
 			String email = in.nextLine();
 			String name = in.nextLine();
 			libraryService.updateMember(id, email, name);
-			System.out.println("Successfully updated magazine");
+			System.out.println("Successfully updated member");
 		} catch (RuntimeException e) {
-			System.out.println("Failure updating magazine");
+			System.out.println("Failure updating member");
 			System.out.println(e.getMessage());
 		}
 	}

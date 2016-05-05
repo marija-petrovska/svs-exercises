@@ -1,7 +1,5 @@
 package library.config;
 
-import javax.annotation.PreDestroy;
-
 import library.domain.Book;
 import library.domain.Loan;
 import library.domain.Magazine;
@@ -31,7 +29,6 @@ public class HibernateConfiguration {
 		return sessionFactory;
 	}
 
-	@PreDestroy
 	public void closeSessionFactory() {
 		sessionFactory().close();
 	}
